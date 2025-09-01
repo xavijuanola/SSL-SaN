@@ -1,21 +1,239 @@
 ---
 layout: page
-gh-repo: xavijuanola/sslsan_page
+gh-repo: xavijuanola/SSL-SaN
 gh-badge: [star, watch, fork, follow]
 share-description: Official website of Learning from Silence and Noise for Visual Sound Source Localization Models
 Including Negative Audio Input
 ---
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learning from Silence and Noise for Visual Sound Source Localization Models</title>
-    <!-- <style>
-        /* Custom container width to increase page width */
-        .custom-container {
-            max-width: 1200px;
-            /* Increase the width as per your needs */
-            margin: 0 auto;
+    <style>
+        /* Original retrieval section styles */
+        .retrieval-section {
+            margin: 24px auto 40px;
+            max-width: 1400px;
+            /* Increased from 1100px */
         }
-    </style> -->
+
+        .retrieval-header {
+            display: grid;
+            grid-template-columns: 180px repeat(4, 1fr);
+            gap: 8px;
+            align-items: end;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .retrieval-grid {
+            display: grid;
+            grid-template-columns: 180px repeat(4, 1fr);
+            gap: 12px;
+            align-items: start;
+        }
+
+        .cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .thumb {
+            width: 180px;
+            height: 135px;
+            object-fit: cover;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+            margin-bottom: 6px;
+        }
+
+        .caption {
+            font-size: 12px;
+            line-height: 1.2;
+            text-align: center;
+            color: #444;
+            min-height: 2.2em;
+        }
+
+        .audio-box {
+            width: 100%;
+            max-width: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .audio-box audio {
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        .table-title {
+            text-align: center;
+            margin: 20px 0 6px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 900px) {
+
+            .retrieval-header,
+            .retrieval-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .retrieval-header> :nth-child(n+3) {
+                display: none;
+            }
+
+            .retrieval-grid> :nth-child(n+3) {
+                display: none;
+            }
+        }
+
+        /* New inferences section styles */
+        .inferences-wrap {
+            margin: 28px auto 32px;
+            max-width: 2000px;
+            /* Increased from 1200px */
+        }
+
+        .inf-title {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* 1 col de etiquetas de fila (modelos),
+           luego 4 cols del primer grupo,
+           1 col separadora,
+           y 4 cols del segundo grupo */
+        .inf-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(4, 1fr) 16px repeat(4, 1fr);
+            gap: 10px 10px;
+            align-items: start;
+        }
+
+        .inf-grid-is3 {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr) 16px repeat(5, 1fr);
+            gap: 10px 10px;
+            align-items: start;
+        }
+
+        /* Cabeceras (fila 1) */
+        .inf-header {
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .header-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            font-weight: 600;
+        }
+
+        .header-label img {
+            height: 16px;
+            width: 16px;
+            object-fit: contain;
+            opacity: 0.9;
+        }
+
+        .header-audio {
+            width: 180px;
+            /* ajusta si necesitas más ancho */
+            max-width: 100%;
+        }
+
+        /* Celda separadora entre grupos */
+        .inf-sep {
+            border-left: 1px dashed #bbb;
+            min-height: 1px;
+        }
+
+        /* Etiquetas de fila (modelos) en vertical */
+        .row-label {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-align: center;
+            font-size: 12px;
+            color: #222;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            align-self: start;
+            /* Adjust this value to align with images */
+        }
+
+        /* Celdas de imagen */
+        .inf-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .inf-thumb {
+            width: 145px;
+            /* ~1.45 cm aprox. visual */
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
+            background: #f7f7f7;
+        }
+
+        .inf-cap {
+            font-size: 11.5px;
+            text-align: center;
+            color: #444;
+            line-height: 1.25;
+            min-height: 2.2em;
+        }
+
+        /* Pie de figura */
+        .inf-caption {
+            text-align: center;
+            font-size: 13px;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        /* Responsive: en pantallas pequeñas, mostrar un bloque (primer grupo) y ocultar el segundo */
+        @media (max-width: 980px) {
+            .inf-grid {
+                grid-template-columns: 70px repeat(4, 1fr);
+            }
+
+            .inf-sep,
+            .g2 {
+                display: none;
+            }
+
+            .header-audio {
+                width: 140px;
+            }
+
+            .inf-thumb {
+                width: 120px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -88,22 +306,16 @@ Including Negative Audio Input
             </div>
         </section>
     </div>
-    </section>
 
     <h5 class="mx-auto text-center" style="color: black">Paper accepted to BMVC 2025</h5>
     <h4 class="mx-auto text-center">
-        <a target="_blank" href="https://arxiv.org/abs/2410.01020">[Paper]</a>
+        <a target="_blank" href="https://arxiv.org/abs/2508.21761">[Paper]</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <a target="_blank" href="https://github.com/xavijuanola/SSL_SaN">[Code]</a>
-        <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
-        <!-- <a target="_blank"
-            href="https://drive.google.com/file/d/11uQ900xNGOHAOpbT33rGXJuoYYV2RZec/view?usp=sharing">[Colab]</a> -->
     </h4>
-    </div>
 
     <br>
     <h2 style="text-align: center">Abstract</h2>
-    <!-- <p class="lead mb-0" align="justify"> -->
     <p class="lead mb-0" align="justify" style="margin-bottom: 30px;">
         Visual sound source localization is a fundamental perception task that aims to detect
         the location of sounding sources in a video given its audio. Despite recent progress,
@@ -124,8 +336,2054 @@ Including Negative Audio Input
     </p>
     <br>
 
-    <!-- Add horizontal line here -->
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Test set IS3+</h2>
 
-    <!-- _______________________________________________________________________________________________________________________________________________________________________________________ -->
+    <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+        <h4>Test set coming soon!</h4>
+        <p>
+            The IS3+ test set will be made available shortly.<br>
+            Please check back soon for access and download instructions.
+        </p>
+    </div>
+
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Cross Modal Retrieval VGG-SS</h2>
+    <h3 style="text-align:center; margin-top:40px; margin-bottom:10px;">Audio → Image Retrieval</h3>
+
+
+    <!-- ===== Audio -> Image Retrieval (VGG-SS) ===== -->
+    <section class="retrieval-section" id="audio-to-image-vggss">
+        <!-- <div class="table-title">Audio → Image Retrieval in VGG-SS</div> -->
+
+        <!-- Cabecera -->
+        <div class="retrieval-header">
+            <div> <span>Query Audio</span> </div>
+            <div>Top 1</div>
+            <div>Top 2</div>
+            <div>Top 3</div>
+            <div>Top 4</div>
+        </div>
+
+        <!-- Fila: CASE 1 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/oSUCIMc3Vp8_000055.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/oSUCIMc3Vp8_000055.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/1obzCbmFpa8_000410.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/-hedbpc8T0E_000030.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/9BGpWG8iqpQ_000000.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/MDa1ZVdDz2Y_000060.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 2 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/0F04c_rY4aw_000000.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/0F04c_rY4aw_000000.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/ZyiDGq0qh2s_000030.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/sRKyvq20rY4_000002.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/0F04c_rY4aw_000000.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/f1Z-HuZ-_ZA_000030.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 3 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/0YTieIiZNN4_000010.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/0YTieIiZNN4_000010.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/BCzUvCRiBZs_000020.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/0YTieIiZNN4_000010.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/2ffgd7k0vI8_000040.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/dLRlnhW9_Pc_000070.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 4 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/CWxZNhucY8o_000573.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/CWxZNhucY8o_000573.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/A4P0IgZQf90_000136.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/APag9oaOG_w_000674.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/K7dXkfKAano_000576.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/A6_-Ji7bq5E_000337.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Pie de Figure -->
+        <p style="text-align:center; font-size: 13px; color:#555; margin-top:10px;">
+            Figure 1. <em>Audio → Image Retrieval</em> examples in VGG-SS.
+        </p>
+    </section>
+
+    <!-- ===== Image -> Audio Retrieval (VGG-SS) ===== -->
+    <h3 style="text-align:center; margin-top:40px; margin-bottom:10px;">Image → Audio Retrieval</h3>
+    <section class="retrieval-section" id="image-to-audio-vggss">
+        <!-- <div class="table-title">Image → Audio Retrieval in VGG-SS</div> -->
+
+        <div class="retrieval-header">
+            <div><span>Query Image</span></div>
+            <div>Top 1</div>
+            <div>Top 2</div>
+            <div>Top 3</div>
+            <div>Top 4</div>
+        </div>
+
+        <!-- Fila: CASE 1 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/oSUCIMc3Vp8_000055.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/8J4YSr55IbY_000009.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/8J4YSr55IbY_000009.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/ULLJMxwt8Jc_000150.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/ULLJMxwt8Jc_000150.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/TB3VhNczX88_000010.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/TB3VhNczX88_000010.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/JKUSKYdYo9w_000000.jpg" alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/JKUSKYdYo9w_000000.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 2 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/0F04c_rY4aw_000000.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/6FUmapkqPn0_000080.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/6FUmapkqPn0_000080.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/HVSrOlC3270_000045.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/HVSrOlC3270_000045.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/BEGgDbKEXMw_000028.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/BEGgDbKEXMw_000028.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/1Isq_KJHriU_000016.jpg" alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/1Isq_KJHriU_000016.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 3 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/0YTieIiZNN4_000010.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/BCzUvCRiBZs_000020.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/BCzUvCRiBZs_000020.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/dLRlnhW9_Pc_000070.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/dLRlnhW9_Pc_000070.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/mTM0WQRcfNU_000050.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/mTM0WQRcfNU_000050.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/0YTieIiZNN4_000010.jpg" alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/0YTieIiZNN4_000010.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 4 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/vggss/image/CWxZNhucY8o_000573.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/Ii5W65uAeF0_000056.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/Ii5W65uAeF0_000056.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/I3OYmetiXqA_000597.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/I3OYmetiXqA_000597.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/Lyj48v3SEzs_000075.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/Lyj48v3SEzs_000075.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/vggss/image/HKvimMUXe7c_000181.jpg" alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/vggss/audio/HKvimMUXe7c_000181.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <p style="text-align:center; font-size: 13px; color:#555; margin-top:10px;">
+            Figure 2. <em>Image → Audio Retrieval</em> examples in VGG-SS.
+        </p>
+    </section>
+
+
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Cross Modal Retrieval IS3+</h2>
+    <h3 style="text-align:center; margin-top:40px; margin-bottom:10px;">Audio → Image Retrieval</h3>
+
+    <!-- ===== Audio -> Image Retrieval (VGG-SS) ===== -->
+    <section class="retrieval-section" id="audio-to-image-vggss">
+        <!-- <div class="table-title">Audio → Image Retrieval in IS3+</div> -->
+
+        <!-- Cabecera -->
+        <div class="retrieval-header">
+            <div> <span>Query Audio</span> </div>
+            <div>Top 1</div>
+            <div>Top 2</div>
+            <div>Top 3</div>
+            <div>Top 4</div>
+        </div>
+
+        <!-- Fila: CASE 1 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/accordion_female_10438_accordion.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/accordion_female_10438_accordion.wav"
+                            type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/accordion_child_10519_accordion.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/male_accordion_9176_accordion.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/mouse_accordion_3689_accordion.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/parrot_accordion_1557_accordion.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 2 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_chainsaw_756_lion.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_chainsaw_756_lion.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/lion_cat_872_cat.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/lion_vacuumcleaner_645_lion.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/lion_frenchhorn_658_lion.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/lion_goat_849_lion.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 3 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/chicken_bus_8050_chicken.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/chicken_bus_8050_chicken.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/chicken_beach_chicken.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/ocean_turkey_5209_turkey.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/chicken_alligator_8028_chicken.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cat_chicken_1748_chicken.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 4 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: audio reproducible + mini portada -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- mini portada opcional (por ejemplo, un espectrograma o frame de referencia) -->
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/cello_male_3879_cello.jpg"
+                        alt="Query audio thumbnail"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/cello_male_3879_cello.wav" type="audio/mpeg">
+                        <!-- fallback -->
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: imagen recuperada -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cello_popcorn_3899_cello.jpg" alt="Top1">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cello_people_3982_cello.jpg" alt="Top2">
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cello_female_3919_cello.jpg" alt="Top3">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cello_donkey_3905_cello.jpg" alt="Top4">
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Pie de Figure -->
+        <p style="text-align:center; font-size: 13px; color:#555; margin-top:10px;">
+            Figure 1. <em>Audio → Image Retrieval</em> examples in IS3+.
+        </p>
+    </section>
+
+    <!-- ===== Image -> Audio Retrieval (VGG-SS) ===== -->
+    <h3 style="text-align:center; margin-top:40px; margin-bottom:10px;">Image → Audio Retrieval</h3>
+    <section class="retrieval-section" id="image-to-audio-is3+">
+        <!-- <div class="table-title">Image → Audio Retrieval in IS3+</div> -->
+
+        <div class="retrieval-header">
+            <div><span>Query Image</span></div>
+            <div>Top 1</div>
+            <div>Top 2</div>
+            <div>Top 3</div>
+            <div>Top 4</div>
+        </div>
+
+        <!-- Fila: CASE 1 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/accordion_female_10438_accordion.jpg"
+                    alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/piano_accordion_9430_accordion.jpg"
+                        alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/piano_accordion_9430_accordion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/racecar_accordion_4559_accordion.jpg"
+                        alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/racecar_accordion_4559_accordion.wav"
+                            type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/accordion_penguin_10497_accordion.jpg"
+                        alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/accordion_penguin_10497_accordion.wav"
+                            type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/train_accordion_6155_accordion.jpg"
+                        alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/train_accordion_6155_accordion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 2 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/lion_chainsaw_756_lion.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_electronicorgan_803_lion.jpg"
+                        alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_electronicorgan_803_lion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_snowmobile_743_lion.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_snowmobile_743_lion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_motorboat_736_lion.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_motorboat_736_lion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_icecreamtruck_823_lion.jpg"
+                        alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_icecreamtruck_823_lion.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 3 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/chicken_bus_8050_chicken.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/lion_bus_807_bus.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/lion_bus_807_bus.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/stream_bus_5395_bus.jpg" alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/stream_bus_5395_bus.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/tractor_popcorn_3452_tractor.jpg"
+                        alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/tractor_popcorn_3452_tractor.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/airplane_bus_1064_bus.jpg" alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/airplane_bus_1064_bus.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <!-- Fila: CASE 4 -->
+        <div class="retrieval-grid">
+            <!-- Col 1: imagen de consulta -->
+            <div class="cell">
+                <img class="thumb" src="assets/retrieval/is3+/image/cello_male_3879_cello.jpg" alt="Query image">
+                <!-- <div class="caption">people babbling (query)</div> -->
+            </div>
+
+            <!-- Col 2: audio reproducible -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/cello_gibbon_3835_cello.jpg" alt="Top1 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/cello_gibbon_3835_cello.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 3 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/slotmachine_cello_2171_cello.jpg"
+                        alt="Top2 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/slotmachine_cello_2171_cello.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people babbling</div> -->
+            </div>
+
+            <!-- Col 4 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/cello_bird_3804_cello.jpg" alt="Top3 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/cello_bird_3804_cello.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+
+            <!-- Col 5 -->
+            <div class="cell">
+                <div class="audio-box">
+                    <!-- <img class="thumb" src="assets/retrieval/is3+/image/cello_chinchilla_3913_cello.jpg"
+                        alt="Top4 thumb"> -->
+                    <audio controls preload="none">
+                        <source src="assets/retrieval/is3+/audio/cello_chinchilla_3913_cello.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+                <!-- <div class="caption">people coughing</div> -->
+            </div>
+        </div>
+
+        <p style="text-align:center; font-size: 13px; color:#555; margin-top:10px;">
+            Figure 2. <em>Image → Audio Retrieval</em> examples in IS3+.
+        </p>
+    </section>
+
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Qualitative results VGG-SS</h2>
+
+    <section class="inferences-wrap" id="qualitative-vggss">
+        <!-- <div class="inf-title">Qualitative localization on VGG-SS</div> -->
+
+        <!-- Row 1: Audio headers -->
+        <div class="inf-grid">
+            <!-- Col 1: empty -->
+            <div></div>
+
+            <!-- Grupo 1: Piano / Silence / Noise / Offscreen -->
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Piano</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/vggss/3vpG1PgFF34_000030.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/vggss/eIxOyj3LfJM_000007.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Col separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2: Chicken / Silence / Noise / Offscreen -->
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Chicken</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/vggss/qhOaqSH-x5E_000030.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/vggss/W1VYWwYdJRQ_000370.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: LVS Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                LVS
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/lvs/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 3: EZ-VSL Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                EZ-VSL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ezvsl/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 4: FNAC Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                FNAC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/fnac/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 5: SLAVC Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SLAVC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/slavc/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 6: SSL-TIE Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-TIE
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/ssltie/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 7: SSL-Align (S. Sup.) Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-Align (S. Sup.)
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslalign/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 8: ACL Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                ACL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/acl/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 8: SSL-SaN Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-SaN
+            </div>
+
+            <!-- Grupo 1 -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/3vpG1PgFF34_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/3vpG1PgFF34_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/3vpG1PgFF34_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/3vpG1PgFF34_000030_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/qhOaqSH-x5E_000030_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/qhOaqSH-x5E_000030_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/qhOaqSH-x5E_000030_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/vggss/sslsan/qhOaqSH-x5E_000030_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+
+        <!-- <p class="inf-caption">
+            Qualitative results for <em>positive</em> and <em>negative</em> cases in VGG-SS.
+        </p> -->
+    </section>
+
+
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Qualitative results IS3+</h2>
+
+    <section class="inferences-wrap" id="qualitative-is3+">
+
+        <!-- Row 1: Audio headers -->
+        <div class="inf-grid-is3">
+            <!-- Col 1: empty -->
+            <div></div>
+
+            <!-- Grupo 1: Piano / Silence / Noise / Offscreen -->
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Cattle</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/cattle_stream_2431_cattle.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Stream</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/cattle_stream_2431_stream.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/car_saxophone_4445_car.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Col separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2: Chicken / Silence / Noise / Offscreen -->
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Firework</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/fireworks_icecreamtruck_10363_firework.wav"
+                            type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Icecream Truck</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/fireworks_icecreamtruck_10363_icecreamtruck.wav"
+                            type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/is3+/dog_child_2860_dog.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: LVS Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                LVS
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/lvs/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 3: EZ-VSL Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                EZ-VSL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ezvsl/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 4: FNAC Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                FNAC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/fnac/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 5: SLAVC Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SLAVC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/slavc/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 6: SSL-TIE Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-TIE
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt="">
+            </div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/ssltie/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 7: SSL-Align (S. Sup.) Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-Align (S. Sup.)
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/cattle_stream_2431_cattle_silence_thresholded.jpg" alt="">
+            </div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt="">
+            </div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslalign/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 8: ACL Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                ACL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/acl/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+        <!-- Row 8: SSL-SaN Model -->
+        <div class="inf-grid-is3" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-SaN
+            </div>
+
+            <!-- Grupo 1 -->
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/cattle_stream_2431_cattle_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/cattle_stream_2431_stream_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/cattle_stream_2431_cattle_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/cattle_stream_2431_cattle_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/cattle_stream_2431_cattle_offscreen_thresholded.jpg" alt="">
+            </div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/fireworks_icecreamtruck_10363_firework_seg_overlay.jpg" alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/fireworks_icecreamtruck_10363_icecreamtruck_seg_overlay.jpg"
+                    alt="">
+            </div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/fireworks_icecreamtruck_10363_firework_silence_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/fireworks_icecreamtruck_10363_firework_noise_thresholded.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/is3+/sslsan/fireworks_icecreamtruck_10363_firework_offscreen_thresholded.jpg"
+                    alt=""></div>
+        </div>
+
+
+        <!-- <p class="inf-caption">
+            Qualitative results for <em>positive</em> and <em>negative</em> cases in IS3+.
+        </p> -->
+    </section>
+
+    <h2 style="text-align:center; margin-top:40px; margin-bottom:10px;">Quaalitative results AVS-Bench S4</h2>
+
+    <section class="inferences-wrap" id="qualitative-s4">
+
+        <!-- Row 1: Audio headers -->
+        <div class="inf-grid">
+            <!-- Col 1: empty -->
+            <div></div>
+
+            <!-- Grupo 1: Piano / Silence / Noise / Offscreen -->
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Race Car</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/s4/7ynQ9wd6neQ.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/s4/2tQjoo4LmXg.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <!-- Col separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2: Chicken / Silence / Noise / Offscreen -->
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Keyboard</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/s4/IldruEHS3m4.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Silence</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/silence.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Noise</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/noise.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+            <div class="inf-header g2">
+                <div class="header-cell">
+                    <div class="header-label">
+                        <span>Offscreen</span>
+                    </div>
+                    <audio class="header-audio js-one-audio" controls preload="none">
+                        <source src="assets/inferences/s4/0UN02RkbG_U.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2: LVS Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                LVS
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/lvs/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb" src="assets/inferences/s4/lvs/IldruEHS3m4_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/lvs/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 3: EZ-VSL Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                EZ-VSL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/ezvsl/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb" src="assets/inferences/s4/ezvsl/IldruEHS3m4_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ezvsl/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 4: FNAC Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                FNAC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/fnac/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb" src="assets/inferences/s4/fnac/IldruEHS3m4_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/fnac/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 5: SLAVC Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SLAVC
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/slavc/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb" src="assets/inferences/s4/slavc/IldruEHS3m4_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/slavc/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 6: SSL-TIE Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-TIE
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/ssltie/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/IldruEHS3m4_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/ssltie/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 7: SSL-Align (S. Sup.) Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-Align (S. Sup.)
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/sslalign/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/IldruEHS3m4_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslalign/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 8: ACL Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                ACL
+            </div>
+
+            <!-- Grupo 1 (Piano→Offscreen) -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/acl/7ynQ9wd6neQ_1_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/7ynQ9wd6neQ_1_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/7ynQ9wd6neQ_1_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/7ynQ9wd6neQ_1_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 (Chicken→Offscreen) -->
+            <div class="inf-cell g2"><img class="inf-thumb" src="assets/inferences/s4/acl/IldruEHS3m4_3_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/IldruEHS3m4_3_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/IldruEHS3m4_3_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/acl/IldruEHS3m4_3_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+        <!-- Row 8: SSL-SaN Model -->
+        <div class="inf-grid" style="align-items:center;">
+            <!-- Col 1: Model name -->
+            <div class="row-label"
+                style="display:flex;align-items:center;justify-content:center;align-self:stretch;margin-top:0;">
+                SSL-SaN
+            </div>
+
+            <!-- Grupo 1 -->
+            <div class="inf-cell"><img class="inf-thumb" src="assets/inferences/s4/sslsan/7ynQ9wd6neQ_seg_overlay.jpg"
+                    alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/7ynQ9wd6neQ_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/7ynQ9wd6neQ_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/7ynQ9wd6neQ_offscreen_thresholded.jpg" alt=""></div>
+
+            <!-- separador -->
+            <div class="inf-sep"></div>
+
+            <!-- Grupo 2 -->
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/IldruEHS3m4_seg_overlay.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/IldruEHS3m4_silence_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/IldruEHS3m4_noise_thresholded.jpg" alt=""></div>
+            <div class="inf-cell g2"><img class="inf-thumb"
+                    src="assets/inferences/s4/sslsan/IldruEHS3m4_offscreen_thresholded.jpg" alt=""></div>
+        </div>
+
+
+        <!-- <p class="inf-caption">
+            Qualitative results for <em>positive</em> and <em>negative</em> cases in AVS-Bench S4.
+        </p> -->
+    </section>
 
 </body>
+
+</html>
